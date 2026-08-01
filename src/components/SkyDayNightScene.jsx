@@ -99,7 +99,7 @@ export default function SkyDayNightScene({ isNight }) {
       dpr={[1, 1.5]}
       camera={{ position: [0, 0, 6], fov: 50 }}
       gl={{ antialias: true, alpha: true }}
-      style={{ position: 'absolute', inset: 0 }}
+      style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
     >
       <ambientLight intensity={isNight ? 0.35 : 0.9} />
       <directionalLight position={[3, 4, 2]} intensity={isNight ? 0.4 : 1} />
