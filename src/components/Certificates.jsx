@@ -2,20 +2,14 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Award } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext.jsx'
-
-// Placeholder — replace with real certificates (title, issuer, date, image)
-const CERTS = [
-  { title: 'Certificate Name', issuer: 'Platform / Organization', date: '2025' },
-  { title: 'Certificate Name', issuer: 'Platform / Organization', date: '2025' },
-  { title: 'Certificate Name', issuer: 'Platform / Organization', date: '2025' },
-]
+import { certificates } from '../data/Certificates'
 
 function FlipCard({ cert, isNight }) {
   const [flipped, setFlipped] = useState(false)
 
   return (
     <div
-      className="h-48 [perspective:1000px] cursor-pointer"
+      className="h-56 [perspective:1000px] cursor-pointer"
       onClick={() => setFlipped((f) => !f)}
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
@@ -27,25 +21,67 @@ function FlipCard({ cert, isNight }) {
       >
         {/* Front */}
         <div
-          className={`absolute inset-0 rounded-2xl flex flex-col items-center justify-center gap-3 [backface-visibility:hidden] ${
+          className={`absolute inset-0 rounded-2xl flex flex-col items-center justify-center gap-3 p-5 text-center [backface-visibility:hidden] ${
             isNight ? 'glass-dark' : 'glass-light'
           }`}
         >
-          <Award size={34} className={isNight ? 'text-night-accent2' : 'text-sky-sun'} />
-          <p className={`font-display text-sm font-medium text-center px-4 ${isNight ? 'text-night-text' : 'text-sky-text'}`}>
+          <Award
+            size={34}
+            className={isNight ? 'text-night-accent2' : 'text-sky-sun'}
+          />
+
+          <h3
+            className={`font-display text-lg font-semibold ${
+              isNight ? 'text-night-text' : 'text-sky-text'
+            }`}
+          >
             {cert.title}
+          </h3>
+
+          <p
+            className={`text-sm ${
+              isNight ? 'text-night-text/70' : 'text-sky-text/70'
+            }`}
+          >
+            {cert.issuer}
           </p>
+
+          <p
+            className={`text-xs ${
+              isNight ? 'text-night-accent2' : 'text-sky-sun'
+            }`}
+          >
+            {cert.date}
+          </p>
+
+          <span
+            className={`text-xs mt-2 ${
+              isNight ? 'text-night-text/50' : 'text-sky-text/50'
+            }`}
+          >
+            Tap to View Certificate →
+          </span>
         </div>
 
         {/* Back */}
         <div
-          className={`absolute inset-0 rounded-2xl flex flex-col items-center justify-center gap-1 px-5 text-center [backface-visibility:hidden] [transform:rotateY(180deg)] ${
-            isNight ? 'bg-night-accent/90' : 'bg-sky-sun/90'
-          }`}
+          className="absolute inset-0 rounded-2xl overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
         >
-          <p className="font-display font-semibold text-white">{cert.title}</p>
-          <p className="font-body text-sm text-white/90">{cert.issuer}</p>
-          <p className="font-mono text-xs text-white/70 mt-1">{cert.date}</p>
+          {cert.image ? (
+            <img
+              src={cert.image}
+              alt={cert.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div
+              className={`w-full h-full flex items-center justify-center ${
+                isNight ? 'bg-night-accent' : 'bg-sky-sun'
+              }`}
+            >
+              <p className="text-white font-semibold">No Certificate</p>
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
@@ -63,25 +99,35 @@ export default function Certificates() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className={`font-mono text-sm mb-2 ${isNight ? 'text-night-accent2' : 'text-sky-sun'}`}
+          className={`font-mono text-sm mb-2 ${
+            isNight ? 'text-night-accent2' : 'text-sky-sun'
+          }`}
         >
           Proof of work
         </motion.p>
+
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`font-display text-3xl sm:text-4xl font-semibold mb-3 ${isNight ? 'text-night-text' : 'text-sky-text'}`}
+          className={`font-display text-3xl sm:text-4xl font-semibold mb-3 ${
+            isNight ? 'text-night-text' : 'text-sky-text'
+          }`}
         >
           Certificates
         </motion.h2>
-        <p className={`font-body text-sm mb-12 ${isNight ? 'text-night-text/60' : 'text-sky-text/60'}`}>
-          Hover or tap a card to flip it. Send your real certificates and I&apos;ll swap these in.
+
+        <p
+          className={`font-body text-sm mb-12 ${
+            isNight ? 'text-night-text/60' : 'text-sky-text/60'
+          }`}
+        >
+          Tap any certificate card to view the original certificate.
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CERTS.map((c, i) => (
-            <FlipCard key={i} cert={c} isNight={isNight} />
+          {certificates.map((cert, i) => (
+            <FlipCard key={i} cert={cert} isNight={isNight} />
           ))}
         </div>
       </div>

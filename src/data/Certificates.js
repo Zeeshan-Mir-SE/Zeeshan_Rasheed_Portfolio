@@ -1,19 +1,25 @@
-// Add, remove, or edit certificates here — the Certificates section updates automatically.
-// image: put certificate images in src/assets/certificates/ and import them, or use a URL.
-
 export const certificates = [
   {
-    title: 'Web Development Fundamentals',
-    issuer: 'Add issuer name',
-    date: 'Add date',
-    image: null,
-    description: 'Add a short note about what this certificate covers.',
+    title: 'IMUN Training for Beginners',
+    issuer: 'National Youth Leadership Programme (NYLP) × NISD',
+    date: '27 July 2026',
+   image: "/imunCertificate.jpeg",
+    description: 'Successfully completed IMUN Training for Beginners.',
   },
+
+  {
+    title: 'Web Development Fundamentals',
+    issuer: 'Coming Soon',
+    date: '2026',
+    image: null,
+    description: '',
+  },
+
   {
     title: 'Python Programming',
-    issuer: 'Add issuer name',
-    date: 'Add date',
+    issuer: 'Coming Soon',
+    date: '2026',
     image: null,
-    description: 'Add a short note about what this certificate covers.',
+    description: '',
   },
 ]
