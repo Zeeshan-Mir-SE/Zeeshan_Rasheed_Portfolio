@@ -8,14 +8,26 @@ const links = [
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
+  { label: 'Experience', href: '#journey' },
   { label: 'Contact', href: '#contact' },
 ]
+
+const NAV_OFFSET = 72 // roughly the fixed navbar's height, so sections don't land hidden behind it
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const { theme } = useTheme()
   const isNight = theme === 'night'
+
+  function handleNavClick(e, href) {
+    e.preventDefault()
+    const el = document.querySelector(href)
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+    setOpen(false)
+  }
 
   return (
     <header
@@ -24,6 +36,7 @@ export default function Navbar() {
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-5 py-3">
         <a
           href="#top"
+          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setOpen(false) }}
           className={`font-display text-lg font-semibold tracking-tight ${isNight ? 'text-night-text' : 'text-sky-text'}`}
         >
           Zeeshan<span className={isNight ? 'text-night-accent' : 'text-sky-sun'}>.</span>
@@ -34,6 +47,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
+                onClick={(e) => handleNavClick(e, l.href)}
                 className={`transition-colors hover:opacity-70 ${isNight ? 'text-night-text' : 'text-sky-text'}`}
               >
                 {l.label}
@@ -68,7 +82,7 @@ export default function Navbar() {
           >
             {links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} onClick={() => setOpen(false)}>
+                <a href={l.href} onClick={(e) => handleNavClick(e, l.href)} className="block py-1">
                   {l.label}
                 </a>
               </li>
