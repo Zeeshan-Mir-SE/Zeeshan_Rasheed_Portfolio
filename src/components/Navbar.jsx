@@ -8,7 +8,7 @@ const links = [
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#journey' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -75,14 +75,20 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.ul
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className={`md:hidden overflow-hidden flex flex-col px-5 pb-4 gap-3 font-body text-sm ${isNight ? 'text-night-text' : 'text-sky-text'}`}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className={`md:hidden flex flex-col px-5 pb-4 gap-1 font-body text-sm ${isNight ? 'text-night-text' : 'text-sky-text'} ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}
+            style={{ touchAction: 'manipulation' }}
           >
             {links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} onClick={(e) => handleNavClick(e, l.href)} className="block py-1">
+                <a
+                  href={l.href}
+                  onClick={(e) => handleNavClick(e, l.href)}
+                  className="block py-2.5 active:opacity-60"
+                >
                   {l.label}
                 </a>
               </li>
