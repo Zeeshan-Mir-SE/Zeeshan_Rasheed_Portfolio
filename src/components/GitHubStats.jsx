@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
 import { Github, Star, GitFork, Users, BookOpen } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext.jsx'
+import { GitHubCalendar } from 'react-github-calendar'
 
-// CHANGE THIS to your real GitHub username once you send it over
 const GITHUB_USERNAME = 'Zeeshan-Mir-SE'
 
 function Counter({ value, isNight }) {
@@ -18,7 +18,7 @@ function Counter({ value, isNight }) {
       controls.stop()
       unsub()
     }
-  }, [value])
+  }, [value, count, rounded])
 
   return (
     <span className={`font-display text-3xl font-semibold ${isNight ? 'text-night-text' : 'text-sky-text'}`}>
@@ -84,6 +84,7 @@ export default function GitHubStats() {
         >
           <Github size={16} /> Live from GitHub
         </motion.p>
+
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,14 +94,11 @@ export default function GitHubStats() {
           GitHub Activity
         </motion.h2>
 
-        {error && (
+        {error ? (
           <p className={`font-body text-sm ${isNight ? 'text-night-text/60' : 'text-sky-text/60'}`}>
-            Couldn&apos;t load live GitHub stats right now — this will show real numbers once the
-            username in <code>GitHubStats.jsx</code> is set to yours.
+            Couldn&apos;t load live GitHub stats right now.
           </p>
-        )}
-
-        {!error && (
+        ) : (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {(stats ? CARDS : Array.from({ length: 4 })).map((c, i) => (
               <motion.div
@@ -126,6 +124,30 @@ export default function GitHubStats() {
             ))}
           </div>
         )}
+
+        {/* Live Contribution Performance Chart */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={`mt-12 rounded-2xl p-6 sm:p-8 ${isNight ? 'glass-dark' : 'glass-light'}`}
+        >
+          <h3 className={`font-display text-xl font-semibold mb-6 ${isNight ? 'text-night-text' : 'text-sky-text'}`}>
+            Contribution Graph
+          </h3>
+
+          <div className="w-full overflow-x-auto flex justify-start sm:justify-center">
+            <div className="min-w-[720px] p-2">
+              <GitHubCalendar
+                username={GITHUB_USERNAME}
+                colorScheme={isNight ? 'dark' : 'light'}
+                blockSize={12}
+                blockMargin={4}
+                fontSize={12}
+              />
+            </div>
+          </div>
+        </motion.div>
 
         <motion.a
           href={`https://github.com/${GITHUB_USERNAME}`}
