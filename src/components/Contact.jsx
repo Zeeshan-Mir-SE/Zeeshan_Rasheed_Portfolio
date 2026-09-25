@@ -3,7 +3,11 @@ import { motion } from 'framer-motion'
 import { Mail, Send, Github, Linkedin } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { useTheme } from '../context/ThemeContext.jsx'
-import emailjs from "@emailjs/browser";
+import emailjs from '@emailjs/browser'
+
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 export default function Contact() {
   const { theme } = useTheme()
@@ -16,26 +20,37 @@ export default function Contact() {
   }
 
   function handleSubmit(e) {
-  e.preventDefault();
-  setLoading(true);
+    e.preventDefault()
 
-  emailjs.send(
-    "service_cyp49ym",
-    "template_c2lfizp",
-    {
-      from_name: form.name,
-      from_email: form.email,
-      message: form.message,
-    },
-    "7aXy5YuYOQ3HWK9-G"
-  ).then(() => {
-    alert("✅ Message sent successfully!");
-    setForm({ name: "", email: "", message: "" });
-  }).catch((error) => {
-    console.error("EmailJS Error:", error);
-    alert("❌ Failed to send message.");
-  }).finally(() => setLoading(false));
-}
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS environment variables are missing.')
+      alert('❌ Email service is not configured for this deployment.')
+      return
+    }
+
+    setLoading(true)
+
+    emailjs
+      .send(
+        serviceId,
+        templateId,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+        },
+        publicKey
+      )
+      .then(() => {
+        alert('✅ Message sent successfully!')
+        setForm({ name: '', email: '', message: '' })
+      })
+      .catch((error) => {
+        console.error('EmailJS Error:', error)
+        alert('❌ Failed to send message. Please check the EmailJS configuration.')
+      })
+      .finally(() => setLoading(false))
+  }
 
   return (
     <section id="contact" className={`py-24 px-6 ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}>
