@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Award } from 'lucide-react'
+import { Award, ExternalLink } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext.jsx'
 import { certificates } from '../data/Certificates'
 
@@ -9,8 +9,17 @@ function FlipCard({ cert, isNight }) {
 
   return (
     <div
-      className="h-56 [perspective:1000px] cursor-pointer"
+      className="w-full aspect-[1600/1131] [perspective:1000px] cursor-pointer"
+      role="group"
+      tabIndex={0}
+      aria-label={`${cert.title}. Tap or hover to view certificate.`}
       onClick={() => setFlipped((f) => !f)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          setFlipped((f) => !f)
+        }
+      }}
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
     >
@@ -65,14 +74,27 @@ function FlipCard({ cert, isNight }) {
 
         {/* Back */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
+          className="absolute inset-0 rounded-2xl overflow-hidden bg-black/10 [backface-visibility:hidden] [transform:rotateY(180deg)]"
         >
           {cert.image ? (
-            <img
-              src={cert.image}
-              alt={cert.title}
-              className="w-full h-full object-cover"
-            />
+            <>
+              <img
+                src={cert.image}
+                alt={cert.title}
+                className="w-full h-full object-contain"
+              />
+              <a
+                href={cert.image}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${cert.title} full size`}
+                onClick={(event) => event.stopPropagation()}
+                className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/75 px-3 py-2 text-xs font-medium text-white backdrop-blur-sm hover:bg-black"
+              >
+                <ExternalLink size={14} />
+                Open full size
+              </a>
+            </>
           ) : (
             <div
               className={`w-full h-full flex items-center justify-center ${
@@ -122,7 +144,7 @@ export default function Certificates() {
             isNight ? 'text-night-text/60' : 'text-sky-text/60'
           }`}
         >
-          Tap any certificate card to view the original certificate.
+          Hover or tap a certificate to preview it, then open it full size.
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

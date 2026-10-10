@@ -3,53 +3,61 @@ import { motion } from 'framer-motion'
 import { Mail, Send, Github, Linkedin } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { useTheme } from '../context/ThemeContext.jsx'
-import emailjs from '@emailjs/browser'
-
-const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
-const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 export default function Contact() {
   const { theme } = useTheme()
   const isNight = theme === 'night'
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState({ type: '', message: '' })
 
   function handleChange(e) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-
-    if (!serviceId || !templateId || !publicKey) {
-      console.error('EmailJS environment variables are missing.')
-      alert('❌ Email service is not configured for this deployment.')
-      return
-    }
-
     setLoading(true)
+    setStatus({ type: '', message: '' })
 
-    emailjs
-      .send(
-        serviceId,
-        templateId,
-        {
-          from_name: form.name,
-          from_email: form.email,
-          message: form.message,
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/zeeshan.mir.001300@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        publicKey
-      )
-      .then(() => {
-        alert('✅ Message sent successfully!')
-        setForm({ name: '', email: '', message: '' })
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: `New portfolio message from ${form.name}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
       })
-      .catch((error) => {
-        console.error('EmailJS Error:', error)
-        alert('❌ Failed to send message. Please check the EmailJS configuration.')
+      const result = await response.json()
+
+      if (!response.ok || (result.success !== true && result.success !== 'true')) {
+        throw new Error(result.message || 'The email service could not accept your message.')
+      }
+
+      setStatus({
+        type: 'success',
+        message: 'Submission accepted. If this is your first message, confirm the FormSubmit email to activate delivery.',
       })
-      .finally(() => setLoading(false))
+      setForm({ name: '', email: '', message: '' })
+    } catch (error) {
+      console.error('Contact form submission failed:', error)
+      setStatus({
+        type: 'error',
+        message: error.message.includes('needs Activation')
+          ? 'FormSubmit sent an activation email to the portfolio inbox. Confirm its Activate Form link, then try sending your message again.'
+          : 'Your message could not be sent. Please try again or email me directly.',
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -176,6 +184,19 @@ export default function Contact() {
                 isNight ? 'border-white/15 text-night-text placeholder:text-night-text/40 focus:border-night-accent' : 'border-black/10 text-sky-text placeholder:text-sky-text/40 focus:border-sky-sun'
               }`}
             />
+            <p
+              role="status"
+              aria-live="polite"
+              className={`font-body text-sm text-center ${
+                status.type === 'error'
+                  ? 'text-red-500'
+                  : status.type === 'success'
+                    ? 'text-emerald-500'
+                    : 'hidden'
+              }`}
+            >
+              {status.message}
+            </p>
             <button
               type="submit"
               disabled={loading}
@@ -186,7 +207,7 @@ export default function Contact() {
               <Send size={16} /> {loading ? "Sending..." : "Send Message"}
             </button>
             <p className={`font-body text-xs text-center ${isNight ? 'text-night-text/40' : 'text-sky-text/40'}`}>
-              Your message will be delivered directly to my inbox.
+              First time? Confirm the FormSubmit verification email to activate delivery.
             </p>
           </motion.form>
         </div>

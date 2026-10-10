@@ -20,6 +20,8 @@ A modern, responsive, and interactive personal portfolio built with **React**, *
 - ✅ Download Resume
 - ✅ Fully Responsive Design
 - ✅ Modern UI & Smooth Animations
+- ✅ Contact form delivery through FormSubmit
+- ✅ Reduced-motion and lower-cost 3D scene settings
 
 ---
 
@@ -67,6 +69,10 @@ npm run dev
 ```text
 http://localhost:5173
 ```
+
+## ✉️ Contact form setup
+
+The contact form uses FormSubmit instead of EmailJS and does not require API keys or a backend. On its first submission, FormSubmit sends a verification email to `zeeshan.mir.001300@gmail.com`; open that email and confirm the address before messages can be delivered. The form displays a success or error message after each submission.
 
 ---
 

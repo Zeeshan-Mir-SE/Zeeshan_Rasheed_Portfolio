@@ -8,29 +8,29 @@ import { useTheme } from '../context/ThemeContext.jsx'
 import { PROJECTS } from '../data/projects.js'
 
 function ProjectsBackdrop({ isNight }) {
-  const color = isNight ? '#8B7CFF' : '#5AA9E6'
-  const color2 = isNight ? '#33D6C0' : '#FDB750'
+  const color = isNight ? '#C9B99F' : '#5AA9E6'
+  const color2 = isNight ? '#E4AE62' : '#FDB750'
 
   return (
     <Canvas
-      dpr={[1, 1.5]}
+      dpr={[1, 1.1]}
       camera={{ position: [0, 0, 6], fov: 50 }}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: false, alpha: true }}
       style={{ position: 'absolute', inset: 0, opacity: 0.5 }}
     >
       <ambientLight intensity={isNight ? 0.4 : 1} />
       <directionalLight position={[2, 3, 2]} intensity={isNight ? 0.3 : 0.8} />
       {isNight ? (
-        <Stars radius={50} depth={30} count={1000} factor={2} fade speed={0.4} />
+        <Stars radius={50} depth={30} count={450} factor={2} fade speed={0.1} />
       ) : (
         <Sparkles count={18} scale={[8, 5, 3]} size={1.4} speed={0.2} color="#ffffff" opacity={0.28} />
       )}
-      <Float speed={1} rotationIntensity={1} floatIntensity={1.2}>
+      <Float speed={0.5} rotationIntensity={0.5} floatIntensity={0.7}>
         <Octahedron args={[0.32, 0]} position={[-4.4, -1.6, -3]}>
           <meshStandardMaterial color={color} emissive={color} emissiveIntensity={isNight ? 0.4 : 0.1} roughness={0.3} metalness={0.3} />
         </Octahedron>
       </Float>
-      <Float speed={1.3} rotationIntensity={1.1} floatIntensity={1.3}>
+      <Float speed={0.6} rotationIntensity={0.55} floatIntensity={0.75}>
         <Torus args={[0.3, 0.1, 16, 32]} position={[4.5, 2, -3.5]}>
           <meshStandardMaterial color={color2} emissive={color2} emissiveIntensity={isNight ? 0.4 : 0.1} roughness={0.3} metalness={0.2} />
         </Torus>
@@ -76,7 +76,7 @@ function ProjectCard({ project, isNight, index }) {
             <>
               <motion.div
                 animate={{ y: [0, -8, 0], rotate: [0, 4, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: index * 0.2 }}
+                transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: index * 0.2 }}
                 className={`h-16 w-16 rounded-2xl flex items-center justify-center ${
                   isNight ? 'bg-night-accent/15 text-night-accent2' : 'bg-sky-sun/15 text-sky-sun'
                 }`}

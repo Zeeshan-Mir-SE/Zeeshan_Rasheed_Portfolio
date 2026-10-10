@@ -20,17 +20,17 @@ export default {
         },
         // Dark "stars" palette
         night: {
-          bg: '#050914',
-          bg2: '#0B1224',
-          star: '#F5F7FF',
-          accent: '#8B7CFF',
-          accent2: '#33D6C0',
-          text: '#EAEFFB',
-          glass: 'rgba(16,22,44,0.55)',
+          bg: '#100F0E',
+          bg2: '#1B1916',
+          star: '#F3EEE6',
+          accent: '#E4AE62',
+          accent2: '#C9B99F',
+          text: '#F3EEE6',
+          glass: 'rgba(27,25,22,0.82)',
         },
       },
       boxShadow: {
-        glow: '0 0 40px rgba(139,124,255,0.35)',
+        glow: '0 0 44px rgba(228,174,98,0.32)',
         'glow-sun': '0 0 60px rgba(253,183,80,0.45)',
       },
       backdropBlur: {

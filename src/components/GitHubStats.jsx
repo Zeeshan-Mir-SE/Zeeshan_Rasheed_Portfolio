@@ -136,16 +136,14 @@ export default function GitHubStats() {
             Contribution Graph
           </h3>
 
-          <div className="w-full overflow-x-auto flex justify-start sm:justify-center">
-            <div className="min-w-[720px] p-2">
-              <GitHubCalendar
-                username={GITHUB_USERNAME}
-                colorScheme={isNight ? 'dark' : 'light'}
-                blockSize={12}
-                blockMargin={4}
-                fontSize={12}
-              />
-            </div>
+          <div className="w-full min-w-0">
+            <GitHubCalendar
+              username={GITHUB_USERNAME}
+              colorScheme={isNight ? 'dark' : 'light'}
+              blockSize={12}
+              blockMargin={4}
+              fontSize={12}
+            />
           </div>
         </motion.div>
 

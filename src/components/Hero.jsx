@@ -48,7 +48,7 @@ export default function Hero() {
     <section
       id="top"
       className={`relative min-h-screen w-full overflow-hidden flex items-center transition-colors duration-700
-        ${isNight ? 'bg-gradient-to-b from-night-bg to-night-bg2' : 'bg-gradient-to-b from-sky-bg to-sky-bg2'}`}
+        ${isNight ? 'night-hero bg-gradient-to-b from-night-bg to-night-bg2' : 'bg-gradient-to-b from-sky-bg to-sky-bg2'}`}
     >
       {!prefersReducedMotion && <SkyDayNightScene isNight={isNight} />}
 
@@ -167,16 +167,16 @@ export default function Hero() {
       >
         <motion.div
           animate={prefersReducedMotion ? {} : { y: [0, -14, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          className="relative w-64 h-64 sm:w-80 sm:h-80"
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          className="relative w-72 h-72 sm:w-96 sm:h-96"
         >
           {/* Glow ring behind the photo, theme aware */}
           <motion.div
             animate={prefersReducedMotion ? {} : { rotate: 360 }}
-            transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
             className={`absolute -inset-3 rounded-full ${
               isNight
-                ? 'bg-gradient-to-tr from-night-accent via-night-accent2 to-night-accent opacity-60 blur-md'
+                ? 'bg-gradient-to-tr from-night-accent via-night-accent2 to-night-accent opacity-75 blur-lg'
                 : 'bg-gradient-to-tr from-sky-sun via-white to-sky-sun opacity-70 blur-md'
             }`}
           />
@@ -184,7 +184,7 @@ export default function Hero() {
           {!prefersReducedMotion && (
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
               className="absolute inset-0"
               style={{ transformOrigin: '50% 50%' }}
             >
@@ -198,7 +198,7 @@ export default function Hero() {
 
           <div
             className={`relative w-full h-full rounded-full overflow-hidden border-4 ${
-              isNight ? 'border-night-bg2' : 'border-white'
+              isNight ? 'border-night-bg2 ring-1 ring-night-accent/40' : 'border-white'
             } shadow-2xl`}
           >
             <img
