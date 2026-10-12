@@ -163,7 +163,7 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="relative flex justify-center md:justify-end"
+        className="relative flex justify-center items-center w-full md:justify-end"
       >
         <motion.div
           animate={prefersReducedMotion ? {} : { y: [0, -14, 0] }}
@@ -199,12 +199,12 @@ export default function Hero() {
           <div
             className={`relative w-full h-full rounded-full overflow-hidden border-4 ${
               isNight ? 'border-night-bg2 ring-1 ring-night-accent/40' : 'border-white'
-            } shadow-2xl`}
+            } shadow-2xl flex items-center justify-center bg-white/10`}
           >
             <img
               src={profilePic}
               alt="Zeeshan Rasheed"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center block"
             />
           </div>
         </motion.div>
