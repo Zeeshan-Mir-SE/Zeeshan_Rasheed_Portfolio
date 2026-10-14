@@ -204,7 +204,8 @@ export default function Hero() {
             <img
               src={profilePic}
               alt="Zeeshan Rasheed"
-              className="w-full h-full object-cover object-center block"
+              className="w-full h-full object-cover block"
+              style={{ objectPosition: 'center 12%' }}
             />
           </div>
         </motion.div>
