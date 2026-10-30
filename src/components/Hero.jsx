@@ -48,7 +48,7 @@ export default function Hero() {
     <section
       id="top"
       className={`relative min-h-screen w-full overflow-hidden flex items-center transition-colors duration-700
-        ${isNight ? 'night-hero bg-gradient-to-b from-night-bg to-night-bg2' : 'bg-gradient-to-b from-sky-bg to-sky-bg2'}`}
+        ${isNight ? 'night-hero bg-night-bg' : 'bg-gradient-to-b from-sky-bg to-sky-bg2'}`}
     >
       {!prefersReducedMotion && <SkyDayNightScene isNight={isNight} />}
 
@@ -77,7 +77,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className={`font-mono text-lg sm:text-xl mt-4 h-8 ${isNight ? 'text-night-accent' : 'text-sky-text/80'}`}
+          className={`font-mono text-lg sm:text-xl mt-4 h-8 ${isNight ? 'text-night-accent2' : 'text-sky-text/80'}`}
         >
           {typed}
           <span className="animate-pulse">|</span>
@@ -102,7 +102,7 @@ export default function Hero() {
           <a
             href="#contact"
             className={`cursor-pointer px-6 py-3 rounded-full font-body text-sm font-medium transition-transform hover:-translate-y-0.5
-              ${isNight ? 'bg-night-accent text-night-bg shadow-glow' : 'bg-sky-text text-white shadow-glow-sun'}`}
+              ${isNight ? 'bg-night-accent2 text-night-bg shadow-glow-lime' : 'bg-sky-text text-white shadow-glow-sun'}`}
           >
             Hire Me
           </a>
@@ -134,7 +134,7 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className={`cursor-pointer ${isNight ? 'text-night-text/80 hover:text-night-accent' : 'text-sky-text/70 hover:text-sky-sun'}`}
+            className={`cursor-pointer ${isNight ? 'text-night-text/80 hover:text-night-accent2' : 'text-sky-text/70 hover:text-sky-sun'}`}
           >
             <Github size={22} />
           </a>
@@ -143,7 +143,7 @@ export default function Hero() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className={`cursor-pointer ${isNight ? 'text-night-text/80 hover:text-night-accent' : 'text-sky-text/70 hover:text-sky-sun'}`}
+            className={`cursor-pointer ${isNight ? 'text-night-text/80 hover:text-night-accent2' : 'text-sky-text/70 hover:text-sky-sun'}`}
           >
             <Linkedin size={22} />
           </a>
@@ -152,7 +152,7 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Email"
-            className={`cursor-pointer ${isNight ? 'text-night-text/80 hover:text-night-accent' : 'text-sky-text/70 hover:text-sky-sun'}`}
+            className={`cursor-pointer ${isNight ? 'text-night-text/80 hover:text-night-accent2' : 'text-sky-text/70 hover:text-sky-sun'}`}
           >
             <Mail size={22} />
           </a>
@@ -190,7 +190,7 @@ export default function Hero() {
             >
               <span
                 className={`absolute -top-2 left-1/2 -translate-x-1/2 h-3 w-3 rounded-full ${
-                  isNight ? 'bg-night-accent2 shadow-glow' : 'bg-sky-sun shadow-glow-sun'
+                  isNight ? 'bg-night-accent2 shadow-glow-lime' : 'bg-sky-sun shadow-glow-sun'
                 }`}
               />
             </motion.div>

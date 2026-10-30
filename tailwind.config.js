@@ -21,7 +21,7 @@ export default {
         // Dark palette: black, cobalt blue, and acid lime
         night: {
           bg: '#05070A',
-          bg2: '#0B1020',
+          bg2: '#0A1020',
           star: '#F3EEE6',
           accent: '#4169E1',
           accent2: '#C7F000',
@@ -31,6 +31,7 @@ export default {
       },
       boxShadow: {
         glow: '0 0 44px rgba(65,105,225,0.36)',
+        'glow-lime': '0 0 44px rgba(199,240,0,0.28)',
         'glow-sun': '0 0 60px rgba(253,183,80,0.45)',
       },
       backdropBlur: {

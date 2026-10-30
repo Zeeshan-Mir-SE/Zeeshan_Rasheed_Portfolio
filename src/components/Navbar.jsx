@@ -39,7 +39,7 @@ export default function Navbar() {
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setOpen(false) }}
           className={`font-display text-lg font-semibold tracking-tight ${isNight ? 'text-night-text' : 'text-sky-text'}`}
         >
-          Zeeshan<span className={isNight ? 'text-night-accent' : 'text-sky-sun'}>.</span>
+          Zeeshan<span className={isNight ? 'text-night-accent2' : 'text-sky-sun'}>.</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-7 font-body text-sm">
@@ -79,7 +79,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className={`md:hidden flex flex-col px-5 pb-4 gap-1 font-body text-sm ${isNight ? 'text-night-text' : 'text-sky-text'} ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}
+            className={`md:hidden flex flex-col px-5 pb-4 gap-1 font-body text-sm ${isNight ? 'text-night-text bg-night-bg' : 'text-sky-text bg-sky-bg2'}`}
             style={{ touchAction: 'manipulation' }}
           >
             {links.map((l) => (

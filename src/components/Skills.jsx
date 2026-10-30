@@ -83,7 +83,7 @@ export default function Skills() {
     <section
       id="skills"
       className={`relative w-full py-24 sm:py-32 transition-colors duration-700 ${
-        isNight ? 'bg-night-bg2' : 'bg-sky-bg2'
+        isNight ? 'bg-night-bg' : 'bg-sky-bg2'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6">

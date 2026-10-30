@@ -74,7 +74,7 @@ export default function GitHubStats() {
     : []
 
   return (
-    <section className={`py-24 px-6 ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}>
+    <section className={`py-24 px-6 ${isNight ? 'bg-night-bg' : 'bg-sky-bg2'}`}>
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -155,7 +155,7 @@ export default function GitHubStats() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className={`inline-flex items-center gap-2 mt-10 px-6 py-3 rounded-full font-body text-sm font-medium transition-transform hover:-translate-y-0.5 ${
-            isNight ? 'bg-night-accent text-night-bg shadow-glow' : 'bg-sky-text text-white shadow-glow-sun'
+            isNight ? 'bg-night-accent2 text-night-bg shadow-glow-lime' : 'bg-sky-text text-white shadow-glow-sun'
           }`}
         >
           <Github size={16} /> View Full Profile

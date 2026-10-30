@@ -61,7 +61,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className={`py-24 px-6 ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}>
+    <section id="contact" className={`py-24 px-6 ${isNight ? 'bg-night-bg' : 'bg-sky-bg2'}`}>
       <div className="max-w-4xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -201,7 +201,7 @@ export default function Contact() {
               type="submit"
               disabled={loading}
               className={`cursor-pointer w-full flex items-center justify-center gap-2 rounded-full px-6 py-3 font-body text-sm font-medium transition-transform hover:-translate-y-0.5 ${
-                isNight ? 'bg-night-accent text-night-bg shadow-glow' : 'bg-sky-text text-white shadow-glow-sun'
+                isNight ? 'bg-night-accent2 text-night-bg shadow-glow-lime' : 'bg-sky-text text-white shadow-glow-sun'
               }`}
             >
               <Send size={16} /> {loading ? "Sending..." : "Send Message"}

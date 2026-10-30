@@ -21,7 +21,7 @@ export default function About() {
       id="about"
       ref={sectionRef}
       className={`relative w-full overflow-hidden py-24 sm:py-32 transition-colors duration-700
-        ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}
+        ${isNight ? 'bg-night-bg' : 'bg-sky-bg2'}`}
     >
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
         <motion.div style={{ y: contentY }}>

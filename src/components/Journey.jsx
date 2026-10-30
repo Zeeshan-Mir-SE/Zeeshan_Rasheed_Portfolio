@@ -32,7 +32,7 @@ export default function Journey() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
-    <section id="experience" ref={ref} className={`py-24 px-6 ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}>
+    <section id="experience" ref={ref} className={`py-24 px-6 ${isNight ? 'bg-night-bg' : 'bg-sky-bg2'}`}>
       <div className="max-w-3xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -58,7 +58,7 @@ export default function Journey() {
           <motion.div
             style={{ height: lineHeight }}
             className={`absolute left-3 top-1 w-[2px] rounded-full ${
-              isNight ? 'bg-night-accent2 shadow-glow' : 'bg-sky-sun shadow-glow-sun'
+              isNight ? 'bg-night-accent2 shadow-glow-lime' : 'bg-sky-sun shadow-glow-sun'
             }`}
           />
 
@@ -76,7 +76,7 @@ export default function Journey() {
                 >
                   <span
                     className={`absolute -left-10 top-0 h-7 w-7 rounded-full flex items-center justify-center ${
-                      isNight ? 'bg-night-accent text-night-bg' : 'bg-sky-sun text-white'
+                      isNight ? 'bg-night-accent2 text-night-bg' : 'bg-sky-sun text-white'
                     } shadow-md`}
                   >
                     <Icon size={14} />

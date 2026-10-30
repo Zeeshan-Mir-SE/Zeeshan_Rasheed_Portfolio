@@ -27,7 +27,7 @@ export default function Services() {
   const isNight = theme === 'night'
 
   return (
-    <section className={`py-24 px-6 ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}>
+    <section className={`py-24 px-6 ${isNight ? 'bg-night-bg' : 'bg-sky-bg2'}`}>
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}

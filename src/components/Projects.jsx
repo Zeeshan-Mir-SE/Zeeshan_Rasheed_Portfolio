@@ -55,7 +55,7 @@ function ProjectCard({ project, isNight, index }) {
         {project.featured && (
           <span
             className={`absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full font-mono text-[10px] tracking-wide ${
-              isNight ? 'bg-night-accent text-night-bg' : 'bg-sky-sun text-white'
+              isNight ? 'bg-night-accent2 text-night-bg' : 'bg-sky-sun text-white'
             }`}
           >
             FEATURED
@@ -66,7 +66,7 @@ function ProjectCard({ project, isNight, index }) {
         <div
           className={`relative h-40 flex items-center justify-center overflow-hidden ${
             isNight
-              ? 'bg-gradient-to-br from-night-bg2 to-night-bg'
+              ? 'bg-night-bg2'
               : 'bg-gradient-to-br from-sky-bg2 to-sky-bg'
           }`}
         >
@@ -119,7 +119,7 @@ function ProjectCard({ project, isNight, index }) {
               target="_blank"
               rel="noreferrer"
               className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${
-                isNight ? 'text-night-text/80 hover:text-night-accent' : 'text-sky-text/80 hover:text-sky-sun'
+                isNight ? 'text-night-text/80 hover:text-night-accent2' : 'text-sky-text/80 hover:text-sky-sun'
               }`}
             >
               <Github size={16} /> Code
@@ -129,7 +129,7 @@ function ProjectCard({ project, isNight, index }) {
               target="_blank"
               rel="noreferrer"
               className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${
-                isNight ? 'text-night-text/80 hover:text-night-accent' : 'text-sky-text/80 hover:text-sky-sun'
+                isNight ? 'text-night-text/80 hover:text-night-accent2' : 'text-sky-text/80 hover:text-sky-sun'
               }`}
             >
               <ExternalLink size={16} /> Live
@@ -146,7 +146,7 @@ export default function Projects() {
   const isNight = theme === 'night'
 
   return (
-    <section id="projects" className={`relative overflow-hidden py-24 px-6 ${isNight ? 'bg-night-bg2' : 'bg-sky-bg2'}`}>
+    <section id="projects" className={`relative overflow-hidden py-24 px-6 ${isNight ? 'bg-night-bg' : 'bg-sky-bg2'}`}>
       <ProjectsBackdrop isNight={isNight} />
 
       <div className="relative z-10 max-w-6xl mx-auto">
