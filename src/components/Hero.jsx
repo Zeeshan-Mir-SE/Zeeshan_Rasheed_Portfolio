@@ -48,7 +48,7 @@ export default function Hero() {
     <section
       id="top"
       className={`relative min-h-screen w-full overflow-hidden flex items-center transition-colors duration-700
-        ${isNight ? 'night-hero bg-night-bg' : 'bg-gradient-to-b from-sky-bg to-sky-bg2'}`}
+        ${isNight ? 'bg-night-bg' : 'bg-gradient-to-b from-sky-bg to-sky-bg2'}`}
     >
       {!prefersReducedMotion && <SkyDayNightScene isNight={isNight} />}
 
