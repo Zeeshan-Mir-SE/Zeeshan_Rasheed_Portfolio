@@ -8,8 +8,8 @@ import { useTheme } from '../context/ThemeContext.jsx'
 import { PROJECTS } from '../data/projects.js'
 
 function ProjectsBackdrop({ isNight }) {
-  const color = isNight ? '#C9B99F' : '#5AA9E6'
-  const color2 = isNight ? '#E4AE62' : '#FDB750'
+  const color = isNight ? '#4169E1' : '#5AA9E6'
+  const color2 = isNight ? '#C7F000' : '#FDB750'
 
   return (
     <Canvas

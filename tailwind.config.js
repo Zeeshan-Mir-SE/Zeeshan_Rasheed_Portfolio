@@ -18,19 +18,19 @@ export default {
           text: '#16233B',
           glass: 'rgba(255,255,255,0.55)',
         },
-        // Dark "stars" palette
+        // Dark palette: black, cobalt blue, and acid lime
         night: {
-          bg: '#100F0E',
-          bg2: '#1B1916',
+          bg: '#05070A',
+          bg2: '#0B1020',
           star: '#F3EEE6',
-          accent: '#E4AE62',
-          accent2: '#C9B99F',
+          accent: '#4169E1',
+          accent2: '#C7F000',
           text: '#F3EEE6',
-          glass: 'rgba(27,25,22,0.82)',
+          glass: 'rgba(11,16,32,0.86)',
         },
       },
       boxShadow: {
-        glow: '0 0 44px rgba(228,174,98,0.32)',
+        glow: '0 0 44px rgba(65,105,225,0.36)',
         'glow-sun': '0 0 60px rgba(253,183,80,0.45)',
       },
       backdropBlur: {
