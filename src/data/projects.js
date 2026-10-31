@@ -9,9 +9,10 @@ import { ShoppingCart, ListChecks, Newspaper, Home } from 'lucide-react'
 //   github   - link to the GitHub repo ('#' if private/none)
 //   live     - link to the live/deployed site ('#' if none yet)
 //   image    - (optional) import a screenshot from src/assets/projects/
-//              and pass it here. If omitted, an animated icon is shown instead.
+//              and pass it here. If omitted, a project-specific preview is shown.
 //   icon     - fallback icon (from lucide-react) shown when there's no image
 //   featured - (optional) true to show a "FEATURED" badge on the card
+//   visual   - preview design: 'store', 'tasks', 'blog', or 'homes'
 //
 // Example once you have a screenshot:
 //   import shopEaseImg from '../assets/projects/shopease.png'
@@ -23,6 +24,8 @@ export const PROJECTS = [
     desc: 'A full-stack online store with product catalog, cart, checkout, and an admin dashboard to manage inventory and orders in real time.',
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
     icon: ShoppingCart,
+    visual: 'store',
+    category: 'Commerce',
     image: null,
     github: '#',
     live: '#',
@@ -33,6 +36,8 @@ export const PROJECTS = [
     desc: 'A Trello-style task board with drag-and-drop columns, team member assignment, and due-date reminders, built for small dev teams.',
     tags: ['React', 'Express', 'MongoDB', 'JWT Auth'],
     icon: ListChecks,
+    visual: 'tasks',
+    category: 'Productivity',
     image: null,
     github: '#',
     live: '#',
@@ -42,6 +47,8 @@ export const PROJECTS = [
     desc: 'A CMS-style blog where writers can draft, edit, and publish posts with markdown support, tags, and a public reader-facing site.',
     tags: ['React', 'Node.js', 'MongoDB'],
     icon: Newspaper,
+    visual: 'blog',
+    category: 'Editorial',
     image: null,
     github: '#',
     live: '#',
@@ -51,6 +58,8 @@ export const PROJECTS = [
     desc: 'A real-estate listing app with search filters, map-based browsing, and a saved-favorites feature backed by a REST API.',
     tags: ['React', 'FastAPI', 'MongoDB'],
     icon: Home,
+    visual: 'homes',
+    category: 'Real estate',
     image: null,
     github: '#',
     live: '#',
